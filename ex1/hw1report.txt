@@ -1,0 +1,44 @@
+operating system: ubuntu 6
+
+line parsing assumptions:
+    since in hebrew new lines does not start with capital letters,
+        we identify line ending using line ending marks such as quetion and assertion marks, dots etc.,
+        which are followed by a whitespace character, such as a whitespace, tab, new-line, etc.   ********* (roman, please abreviate \ comment)  *****
+
+Tokenization assumptions:
+    Since we assume the text to be in hebrew with English names to be used, at most,
+    we didn't taken care of more complex english corner cases, such as commas to abreviate the
+    concatenation of words such as 'do' and 'not'
+
+    Quotations, sarcasm, etc - We regard the content of quotations, sarcasm, etc. as a token /
+    set of tokens which are separate from the quotation marks themselves when the whole quotation
+    is standing by its own.
+    This includes the cases where a, for instance, a sarcastic adjective is prefixed with another letter, such as:
+       ה הידיעה: ה"שמח"
+    which in this case would also be separated to 'ה הידיעה', the quotation marks, and the sarcastic adjective-'שמח'.
+
+    Phone numbers - we tokenize, for abreviation, only for domestic israeli phone numbers, in an international format
+    (prefifxed by +972) or domestic. Both contains city/cell company code prefix before the 7 last digits.
+    We verify the number of digits in the phone number, and assume country-code,
+    city/cell-company code and last 7 digits, are separated with dashes.
+
+    Time - we tokenize time in the format of single or double digits for hour and minutes, (we also permits seconds) -
+    all separated with columns. We also permits the AM/PM indicator to be included as part of the token.
+    We disregard timezone code indicator, as we don't have yet means for distinguishing it from any other word the
+    time token may be followed with (such as the false token that would occure parsing: '(18:04AM in) the morning)
+
+    Dates - for abreviation, we only tokenized numeric dates. All dates are assumed to be 1-2 digits for the day
+    and month indicators, and 2/4 for the year. all indicators are assumed to be separated with dashed, dots or slashes.
+    The year section may come in front or as last.
+
+    Comma separated numbers, and/or decimal point
+
+    Hebrew abreviations using quotations marks before the last letter - this is to support cases such as: תנ"ך
+
+    Apostrophe as abreaviation or scpecial hebrew sound - this is to support cases such as: טל', ג'ורג', צ'אט
+
+    Censorship - we chose a subset of special characters (@, # and *) to be used for censorship. For your consideration,
+    in the document, the words compounding the original foul word were separated with a space,
+    hense are considered to be 2 separate word - 's@#*' and 'it'
+
+    All the rest of the special characters are separated from the text.
