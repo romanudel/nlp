@@ -1,0 +1,26 @@
+Sentence separation process assumptions:
+•	The boundaries of the sentence are the marks: ‘?’, ‘!’, ';’, '.' As well as '-' when it comes to mark a 'separator' rather than a ‘hyphen’ sign (the separator sign is longer then the hyphen sign and indicate a sentence separation according to wiki page).
+A 'separator' will follow a space and sometimes a space, one character in front of it. 
+
+•	In case of sentences which start or include double quotes (“ ”) or single (‘ ’) we spate it to sentences under these rules:
+    o	If a quote consists of one sentence, meaning it has no sentence separators (criteria for sentence separators were mentions earlier).
+    This will be treated as if the quotes and the sentence it surrounds as an inner part of an outer sentence. 
+    For example:
+
+ 
+    o	On the other hand, qoutation marks which, have a one or a more sentence separators, these separators will define a different sentence 
+    where the qoutation marks will be included in the sentence before and after the first and last separator, respectively.
+    For example, sentence such as:
+ 
+    to:
+ 
+  We had to consider whter we will treate the second case (qoutation marks with sentence separator as an inner character)as one sentence or to splite it as we suggested on the second bullet.
+  We desided the we should split the qoutation marks since otherwise we will miss sentaces that, the qoutation marks surrounds. 
+
+•	Sentence seperators will be treated as such, if it follows by a whitespace, otherewise it will be consider as a part of a word. 
+  Words such as: ת.ד or מ.ע.צ as well as sentances include/end with the sentence seperators that are following same separator -
+  e.g. (…) or (???) . these cases and simmilar ones should’nt be seperated to sentence. 
+
+•	Since the text is most consists of hebrew words, we didn’t handle english case for words such as: “etc.” which ends with the dot (.) sign following a withspace seperator.
+  We assume that hebrew texts will not consist of such words. In Hebrew we are not aware of such word structure that need to be attend to.
+
